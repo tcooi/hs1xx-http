@@ -1,0 +1,24 @@
+{
+  "name": "hs1xx-http",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tcooi/hs1xx-http.git"
+  },
+  "author": "tcooi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tcooi/hs1xx-http/issues"
+  },
+  "homepage": "https://github.com/tcooi/hs1xx-http#readme",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.0",
+    "hs100-api": "^0.3.0"
+  }
+}
