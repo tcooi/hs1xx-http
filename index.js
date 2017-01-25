@@ -27,15 +27,15 @@ router.get('/', function(req, res) {
 
 router.route('/state')
   .get(function(req, res) {
-    getState(function(plug) {
-      res.json(plug);
+    getState(function(state) {
+      res.json(state);
     });
   });
 
   router.route('/schedule')
     .get(function(req, res) {
-      getSchedule(function(plug) {
-        res.json(plug);
+      getSchedule(function(state) {
+        res.json(state);
       });
     });
 
@@ -53,28 +53,28 @@ router.route('/off')
 
 router.route('/toggle')
   .get(function(req, res) {
-    getState(function(plug) {
-      if(plug.relay_state === 1) {
+    getState(function(state) {
+      if(state.sysInfo.relay_state === 1) {
         off();
-        res.json({state: 'off'});
+        res.json(state);
       }else {
         on();
-        res.json({state: 'on'});
+        res.json(state);
       }
     });
   });
 
 function getState(cb) {
-  plug.getInfo().then(function(plug) {
-    display(plug);
-    cb(plug);
+  plug.getInfo().then(function(state) {
+    display(state);
+    cb(state);
   });
 }
 
 function getSchedule(cb) {
-  plug.getScheduleRules().then(function(plug) {
-    display(plug);
-    cb(plug);
+  plug.getScheduleRules().then(function(state) {
+    display(state);
+    cb(state);
   });
 }
 
@@ -87,8 +87,8 @@ function off() {
 }
 
 function toggle() {
-  plug.getSysInfo().then(function(plug) {
-    if(plug.relay_state === 1) {
+  plug.getSysInfo().then(function(state) {
+    if(state.relay_state === 1) {
       off();
     }else {
       on();
