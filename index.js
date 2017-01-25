@@ -51,7 +51,7 @@ router.route('/off')
     res.json({state: 'off'});
   });
 
-router.route('/s')
+router.route('/toggle')
   .get(function(req, res) {
     getState(function(plug) {
       if(plug.relay_state === 1) {
@@ -86,19 +86,13 @@ function off() {
   plug.setPowerState(false).then(display);
 }
 
-function s() {
+function toggle() {
   plug.getSysInfo().then(function(plug) {
     if(plug.relay_state === 1) {
       off();
     }else {
       on();
     }
-  });
-}
-
-function sc() {
-  plug.getScheduleRules().then(function(plug) {
-    console.log(plug);
   });
 }
 
