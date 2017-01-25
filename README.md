@@ -5,15 +5,15 @@ http api for tplink hs1xx smart plugs
 usage
 -----
 fix dependencies
-´npm install´
+`npm install`
 
 create config.json object in root folder
-´{
+`{
   "ip": "HS1XX_IP"
-  }´
+  }`
 
 start server
-´node index.js´
+`node index.js`
 
 commands
 --------
