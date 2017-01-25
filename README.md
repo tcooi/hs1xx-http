@@ -23,6 +23,8 @@ node index.js
 
 ## commands
 
+```
 http:/localhost/8010/on
 http:/localhost/8010/off
 http:/localhost/8010/toggle
+```
