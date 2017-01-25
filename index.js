@@ -96,6 +96,6 @@ function toggle() {
   });
 }
 
-app.use('/hs1xx', router);
+app.use('/', router);
 app.listen(port);
 console.log('listening to port ' + port);
