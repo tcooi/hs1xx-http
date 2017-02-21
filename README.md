@@ -18,7 +18,7 @@ create config.json object in root folder
 
 start server
 ```
-node index.js
+npm start
 ```
 
 ## commands
