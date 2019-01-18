@@ -1,4 +1,4 @@
-# hs1xx-http
+# hsx-http
 
 http api for tplink hs1xx smart plugs
 
