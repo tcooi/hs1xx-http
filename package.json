@@ -1,11 +1,11 @@
 {
-  "name": "hs1xx-http",
+  "name": "hsx-http",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
   "dependencies": {
     "body-parser": "^1.16.0",
     "express": "^4.14.0",
-    "hs100-api": "^0.3.0"
+    "hs100-api": "^0.3.0",
+    "tplink-smarthome-api": "^2.0.0"
   }
 }

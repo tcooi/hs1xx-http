@@ -2,11 +2,11 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var app = express();
 
-var Hs100Api = require('hs100-api');
+var TPLINKAPI = require('tplink-smarthome-api');
 var config = require('./config.json');
 
-var client = new Hs100Api.Client();
-var plug = client.getPlug({host: config.ip});
+var client = new TPLINKAPI.Client();
+var plug = client.getPlug({host: config.a});
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -39,19 +39,19 @@ router.route('/state')
       });
     });
 
-router.route('/on')
+router.route('/:id/on')
   .get(function(req, res) {
     on();
     res.json({state: 'on'});
   });
 
-router.route('/off')
+router.route('/:id/off')
   .get(function(req, res) {
     off();
     res.json({state: 'off'});
   });
 
-router.route('/toggle')
+router.route('/:id/toggle')
   .get(function(req, res) {
     getState(function(state) {
       if(state.sysInfo.relay_state === 1) {
