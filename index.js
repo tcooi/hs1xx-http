@@ -15,8 +15,6 @@ for (let [key, value] of Object.entries(config)) {
   devices[key] = client.getPlug({host: value});
 }
 
-var plug = client.getPlug({host: config.a});
-
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
@@ -60,11 +58,17 @@ function toggle() {
   });
 }
 
-router.get('/:id/off', function(req, res) {
-  let id = req.params.id
-  devices[id].setPowerState(false).then(display);
-  // console.log(devices[a])
-  })
+router.get('/all/on', function(req, res) {
+  for (let id in devices) {
+    devices[id].setPowerState(true).then(display);
+  }
+})
+
+router.get('/all/off', function(req, res) {
+  for (let id in devices) {
+    devices[id].setPowerState(false).then(display);
+  }
+})
 
 router.get('/:id/on', function(req, res) {
   let id = req.params.id
@@ -72,6 +76,11 @@ router.get('/:id/on', function(req, res) {
   // console.log(devices[a])
   })
 
+router.get('/:id/off', function(req, res) {
+  let id = req.params.id
+  devices[id].setPowerState(false).then(display);
+  // console.log(devices[a])
+  })
 
 router.get('/', function(req, res) {
   getState(function(plug) {
