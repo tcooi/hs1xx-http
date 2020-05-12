@@ -58,29 +58,59 @@ function toggle() {
   });
 }
 
-router.get('/all/on', function(req, res) {
+router.get('/all/info', (req, res) => {
+  let id = req.params.id;
+  devices[id].getSysInfo().then( x => {
+    res.json(x);
+  })
+})
+
+router.get('/:id/info', (req, res) => {
+  let id = req.params.id;
+  devices[id].getSysInfo().then( x => {
+    res.json(x);
+  })
+})
+
+router.get('/:id/getnextaction', (req, res) => {
+  let id = req.params.id;
+  devices[id].schedule.getNextAction().then( x => {
+    console.log(x)
+  })
+})
+
+router.get('/all/on', (req, res) => {
   for (let id in devices) {
     devices[id].setPowerState(true).then(display);
   }
 })
 
-router.get('/all/off', function(req, res) {
+router.get('/all/off', (req, res) => {
   for (let id in devices) {
     devices[id].setPowerState(false).then(display);
   }
 })
 
-router.get('/:id/on', function(req, res) {
-  let id = req.params.id
+router.get('/:id/on', (req, res) => {
+  let id = req.params.id;
   devices[id].setPowerState(true).then(display);
   // console.log(devices[a])
   })
 
-router.get('/:id/off', function(req, res) {
-  let id = req.params.id
+router.get('/:id/off', (req, res) => {
+  let id = req.params.id;
   devices[id].setPowerState(false).then(display);
   // console.log(devices[a])
   })
+
+router.get('/:id/getschedule', (req, res) => {
+  let id = req.params.id;
+  devices[id].schedule.getRules().then( x => {
+    console.log(x);
+  });
+})
+
+
 
 router.get('/', function(req, res) {
   getState(function(plug) {
