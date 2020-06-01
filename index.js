@@ -26,8 +26,8 @@ function display(res) {
   console.log(res);
 }
 
-function getState(cb) {
-  plug.getInfo().then(function(state) {
+function getIdInfo(cb) {
+  devices[id].getInfo().then(function(state) {
     display(state);
     cb(state);
   });
@@ -58,16 +58,22 @@ function toggle() {
   });
 }
 
+
+
 router.get('/all/info', (req, res) => {
-  let id = req.params.id;
-  devices[id].getSysInfo().then( x => {
-    res.json(x);
-  })
-})
+  let infoArray = [];
+  for (let id in devices) {
+    devices[id].getSysInfo().then( device => {
+      infoArray[id] = device;
+      console.log(infoArray);
+    })
+  }
+  res.json(infoArray);
+});
 
 router.get('/:id/info', (req, res) => {
   let id = req.params.id;
-  devices[id].getSysInfo().then( x => {
+  devices[id].getInfo().then( x => {
     res.json(x);
   })
 })
